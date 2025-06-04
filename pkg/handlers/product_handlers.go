@@ -7,15 +7,15 @@ import (
 	"net/http"
 )
 
-func GetProduct(c *gin.Context) {
+func GetProducts(c *gin.Context) {
 	var products []models.Product
 	database.DB.Find(&products)
 	c.JSON(http.StatusOK, products)
 }
 
-func GetProducts(c *gin.Context) {
-	var product models.Product
+func GetProduct(c *gin.Context) {
 	id := c.Param("id")
+	var product models.Product
 	if database.DB.First(&product, id).Error != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
 		return

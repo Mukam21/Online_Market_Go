@@ -2,6 +2,7 @@ package routes
 
 import (
 	"Online_market/pkg/handlers"
+	"Online_market/pkg/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,13 +11,20 @@ func SetupRoutes(router *gin.Engine) {
 	{
 		products := api.Group("/products")
 		{
-			products.GET("", handlers.GetProduct)
-			products.GET("/id", handlers.GetProducts)
+			products.GET("", handlers.GetProducts)
+			products.GET("/:id", handlers.GetProduct)
 			products.POST("", handlers.CreateProduct)
-			products.PUT("/id", handlers.UpdateProduct)
-			products.DELETE("/id", handlers.DeleteProduct)
+			products.PUT("/:id", handlers.UpdateProduct)
+			products.DELETE("/:id", handlers.DeleteProduct)
 		}
 
 		api.POST("/register", handlers.User_Registr)
+		api.POST("/login", handlers.User_Login)
+
+		auth := api.Group("/")
+		auth.Use(middleware.JWTAuthMiddleware())
+		{
+			auth.GET("/user_profile", handlers.GetProfile)
+		}
 	}
 }
