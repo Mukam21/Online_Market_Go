@@ -17,9 +17,6 @@ func SetupRoutes(router *gin.Engine) {
 			products.DELETE("/id", handlers.DeleteProduct)
 		}
 
-		auth := api.Group("/auth")
-		{
-			auth.POST("", handlers.User_Registr)
-		}
+		api.POST("/register", handlers.User_Registr)
 	}
 }
