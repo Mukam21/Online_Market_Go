@@ -29,7 +29,7 @@
 1. Клонируйте репозиторий:
 
    ```bash
-   git clone https://github.com/yourusername/your-repo.git
+   git clone https://github.com/Mukam21/Online_Market_Go.git
 
 2. Настройте базу данных PostgreSQL:
 
