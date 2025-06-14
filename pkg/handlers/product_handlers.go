@@ -3,8 +3,9 @@ package handlers
 import (
 	"Online_market/pkg/database"
 	"Online_market/pkg/models"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func GetProducts(c *gin.Context) {

@@ -3,11 +3,12 @@ package database
 import (
 	"Online_market/pkg/models"
 	"fmt"
+	"log"
+	"os"
+
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"log"
-	"os"
 )
 
 var DB *gorm.DB

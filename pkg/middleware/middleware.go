@@ -2,9 +2,10 @@ package middleware
 
 import (
 	"Online_market/pkg/jwt"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 func JWTAuthMiddleware() gin.HandlerFunc {
@@ -23,7 +24,7 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		
+
 		c.Set("userID", claims.UserID)
 		c.Next()
 	}

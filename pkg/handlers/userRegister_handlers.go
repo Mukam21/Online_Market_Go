@@ -3,9 +3,10 @@ package handlers
 import (
 	"Online_market/pkg/database"
 	"Online_market/pkg/models"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
-	"net/http"
 )
 
 func User_Registr(c *gin.Context) {
