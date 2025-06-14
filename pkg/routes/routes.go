@@ -22,6 +22,8 @@ func SetupRoutes(router *gin.Engine) {
 
 		}
 
+		api.POST("/orders", handlers.CreateOrder)
+
 		api.POST("/register", handlers.User_Registr)
 		api.POST("/login", handlers.User_Login)
 
