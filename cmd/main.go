@@ -33,7 +33,7 @@ func main() {
 			GroupID: "order-consumer-group",
 		})
 
-		log.Println("🛒 Order Consumer started")
+		log.Println("Order Consumer started")
 
 		for {
 			m, err := reader.ReadMessage(context.Background())
@@ -47,7 +47,7 @@ func main() {
 				continue
 			}
 
-			log.Printf("📥 New Order: User %d buys %d of Product %d\n",
+			log.Printf("New Order: User %d buys %d of Product %d\n",
 				order.UserID, order.Quantity, order.ProductID)
 		}
 	}()
