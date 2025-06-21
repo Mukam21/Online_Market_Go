@@ -1,4 +1,4 @@
-             Онлайн-Маркет с Kafka, Gin, GORM и PostgreSQL
+    Онлайн-Маркет с Kafka, Gin, GORM и PostgreSQL
  
   Описание:
 
