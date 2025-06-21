@@ -19,13 +19,10 @@ type OrderRequest struct {
 }
 
 func main() {
-	// Подключение к базе
 	database.ConnectDB()
 
-	// Инициализация Kafka producer (если нужен)
 	handlers.InitKafkaWriter()
 
-	// Создаем и запускаем consumer в отдельной горутине
 	go func() {
 		reader := kafka.NewReader(kafka.ReaderConfig{
 			Brokers: []string{"localhost:9092"},
@@ -33,7 +30,7 @@ func main() {
 			GroupID: "order-consumer-group",
 		})
 
-		log.Println("🛒 Order Consumer started")
+		log.Println("Order Consumer started")
 
 		for {
 			m, err := reader.ReadMessage(context.Background())
@@ -47,7 +44,7 @@ func main() {
 				continue
 			}
 
-			log.Printf("📥 New Order: User %d buys %d of Product %d\n",
+			log.Printf(" New Order: User %d buys %d of Product %d\n",
 				order.UserID, order.Quantity, order.ProductID)
 		}
 	}()

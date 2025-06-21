@@ -46,3 +46,7 @@ func ConnectDB() {
 		log.Fatalf("AutoMigrate error: %v", err)
 	}
 }
+
+func GetDB() *gorm.DB {
+	return DB
+}
