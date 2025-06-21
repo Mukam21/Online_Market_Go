@@ -38,7 +38,7 @@
   
 1. Запуск Kafka и Zookeeper через Docker Compose
 
-  docker-compose up -d
+            docker-compose up -d
 
 2. Настройка базы данных:
 
@@ -52,13 +52,13 @@
 
 4. Запуск сервера (продюсера и API):
 
-   go run cmd/main.go
+            go run cmd/main.go
 
 5. Запуск консьюмера Kafka (обработчик заказов)
 
   В отдельном терминале:
 
-  go run cmd/consumer/main.go
+            go run cmd/consumer/main.go
 
   Примеры запросов:
 
