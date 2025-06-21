@@ -13,6 +13,7 @@ import (
 func main() {
 	database.ConnectDB()
 	db := database.GetDB()
+	database.AutoMigrate()
 
 	reader := kafka.NewReader(kafka.ReaderConfig{
 		Brokers: []string{"localhost:9092"},

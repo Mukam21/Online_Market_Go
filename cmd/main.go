@@ -3,6 +3,7 @@ package main
 import (
 	"Online_market/pkg/database"
 	"Online_market/pkg/handlers"
+	"Online_market/pkg/models"
 	"Online_market/pkg/routes"
 	"context"
 	"encoding/json"
@@ -11,12 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/segmentio/kafka-go"
 )
-
-type OrderRequest struct {
-	UserID    uint `json:"user_id"`
-	ProductID uint `json:"product_id"`
-	Quantity  int  `json:"quantity"`
-}
 
 func main() {
 	database.ConnectDB()
@@ -38,13 +33,14 @@ func main() {
 				log.Fatal("Failed to read message:", err)
 			}
 
-			var order OrderRequest
+			var order models.OrderRequest
 			if err := json.Unmarshal(m.Value, &order); err != nil {
 				log.Println("Invalid order format")
 				continue
 			}
 
-			log.Printf(" New Order: User %d buys %d of Product %d\n",
+			log.Printf("New Order: User %d buys %d of Product %d\n",
+
 				order.UserID, order.Quantity, order.ProductID)
 		}
 	}()
