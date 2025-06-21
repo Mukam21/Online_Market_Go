@@ -64,31 +64,31 @@
 
 Регистрация пользователя:
 
-**** POST /api/register
+     **** POST /api/register
 
-      Content-Type: application/json
+          Content-Type: application/json
 
-      {
+          {
       
-        "username": "user1",
+            "username": "user1",
         
-        "password": "password123"
+           "password": "password123"
         
-      } ****
+          } ****
 
 Авторизация:
 
-**** POST /api/login
+    **** POST /api/login
+ 
+         Content-Type: application/json
 
-      Content-Type: application/json
-
-      {
+        {
       
-        "username": "user1",
+           "username": "user1",
   
-        "password": "password123"
+           "password": "password123"
 
-      } ****
+        } ****
 
 В ответ получишь JWT токен, который нужно передавать в заголовке Authorization для защищенных эндпоинтов:
 
@@ -96,42 +96,42 @@
 
 Получить список товаров:
 
-  GET /api/products
+       GET /api/products
 
 Создать заказ (отправляется в Kafka):
 
 Например :
 
-**** POST /api/orders
+      **** POST /api/orders
       
-      Content-Type: application/json
+            Content-Type: application/json
       
-      {
+           {
       
-        "user_id": 1,
+               "user_id": 1,
+   
+               "product_id": 5,
   
-        "product_id": 5,
-  
-        "quantity": 2
+               "quantity": 2
 
-      } ****
+           } ****
 
 Структура проекта:
 
-- cmd/main.go — точка входа для API + Kafka продюсера
+     - cmd/main.go — точка входа для API + Kafka продюсера
 
-- cmd/consumer/main.go — Kafka консьюмер, который обрабатывает заказы
+     - cmd/consumer/main.go — Kafka консьюмер, который обрабатывает заказы
 
-- pkg/database/ — подключение к базе и миграции
+     - pkg/database/ — подключение к базе и миграции 
 
-- pkg/models/ — модели БД (User, Product, Order)
+     - pkg/models/ — модели БД (User, Product, Order)
 
-- pkg/handlers/ — HTTP хендлеры для API
+     - pkg/handlers/ — HTTP хендлеры для API
 
-- pkg/routes/ — маршруты API
+     - pkg/routes/ — маршруты API
 
-- pkg/middleware/ — JWT авторизация
+     - pkg/middleware/ — JWT авторизация
 
-- pkg/jwt/ — JWT авторизация
+    - pkg/jwt/ — JWT авторизация
 
-- docker-compose.yml — конфигурация для Kafka и Zookeeper
+    - docker-compose.yml — конфигурация для Kafka и Zookeeper
