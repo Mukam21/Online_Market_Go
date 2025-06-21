@@ -1,4 +1,4 @@
-Онлайн-Маркет с Kafka, Gin, GORM и PostgreSQL
+             Онлайн-Маркет с Kafka, Gin, GORM и PostgreSQL
  
   Описание:
 
@@ -132,6 +132,6 @@
 
 - pkg/middleware/ — JWT авторизация
 
-- - pkg/jwt/ — JWT авторизация
+- pkg/jwt/ — JWT авторизация
 
 - docker-compose.yml — конфигурация для Kafka и Zookeeper
