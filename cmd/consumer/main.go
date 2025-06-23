@@ -16,9 +16,10 @@ func main() {
 	database.AutoMigrate()
 
 	reader := kafka.NewReader(kafka.ReaderConfig{
-		Brokers: []string{"localhost:9092"},
-		Topic:   "orders",
-		GroupID: "order-consumer-group",
+		Brokers:     []string{"localhost:9092"},
+		Topic:       "orders",
+		GroupID:     "order-consumer-group-v2",
+		StartOffset: kafka.LastOffset,
 	})
 
 	log.Println("Kafka Order Consumer is running...")
@@ -36,6 +37,9 @@ func main() {
 			continue
 		}
 
+		log.Printf("Получен заказ: пользователь %d, товар %d, количество %d",
+			order.UserID, order.ProductID, order.Quantity)
+
 		var product models.Product
 		if err := db.First(&product, order.ProductID).Error; err != nil {
 			log.Printf("Товар с ID %d не найден", order.ProductID)
@@ -43,7 +47,8 @@ func main() {
 		}
 
 		if product.Quantity < order.Quantity {
-			log.Printf("Недостаточно товара %d. Осталось %d, запрошено %d", order.ProductID, product.Quantity, order.Quantity)
+			log.Printf("Недостаточно товара %d. Осталось %d, запрошено %d",
+				order.ProductID, product.Quantity, order.Quantity)
 			continue
 		}
 
@@ -61,7 +66,8 @@ func main() {
 		if err := db.Create(&newOrder).Error; err != nil {
 			log.Println("Ошибка при сохранении заказа:", err)
 		} else {
-			log.Printf("Заказ сохранен: пользователь %d заказал %d ед. товара %d", order.UserID, order.Quantity, order.ProductID)
+			log.Printf("Заказ сохранен: пользователь %d заказал %d ед. товара %d",
+				order.UserID, order.Quantity, order.ProductID)
 		}
 	}
 }

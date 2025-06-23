@@ -20,9 +20,10 @@ func main() {
 
 	go func() {
 		reader := kafka.NewReader(kafka.ReaderConfig{
-			Brokers: []string{"localhost:9092"},
-			Topic:   "orders",
-			GroupID: "order-consumer-group",
+			Brokers:     []string{"localhost:9092"},
+			Topic:       "orders",
+			GroupID:     "order-consumer-group-v2",
+			StartOffset: kafka.LastOffset,
 		})
 
 		log.Println("Order Consumer started")
