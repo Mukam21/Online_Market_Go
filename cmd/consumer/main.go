@@ -19,7 +19,7 @@ func main() {
 		Brokers:     []string{"localhost:9092"},
 		Topic:       "orders",
 		GroupID:     "order-consumer-group-v2",
-		StartOffset: kafka.LastOffset,
+		StartOffset: kafka.LastOffset, // чтобы читать только новые сообщения
 	})
 
 	log.Println("Kafka Order Consumer is running...")

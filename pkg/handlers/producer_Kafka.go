@@ -30,7 +30,6 @@ func CreateOrder(c *gin.Context) {
 		return
 	}
 
-	// Проверка на нули
 	if order.UserID == 0 || order.ProductID == 0 || order.Quantity <= 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Некорректные значения заказа"})
 		return
